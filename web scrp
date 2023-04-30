@@ -1,0 +1,23 @@
+import requests
+from bs4 import BeautifulSoup
+
+# specify the URL of the website to be scraped
+url = 'https://www.example.com'
+
+# send a GET request to the website and retrieve the HTML content
+response = requests.get(url)
+html_content = response.content
+
+# create a BeautifulSoup object from the HTML content
+soup = BeautifulSoup(html_content, 'html.parser')
+
+# find the element(s) on the website that contain the data to be extracted
+data_elements = soup.find_all('div', class_='data')
+
+# extract the data from the element(s)
+data = []
+for element in data_elements:
+    data.append(element.text)
+
+# print the extracted data
+print(data)
